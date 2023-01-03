@@ -1,0 +1,61 @@
+string nextSmallerPalindrome(string &s) {
+    // Write your code here.
+    string ans = s ; 
+    if(s=="11"){
+        return "9"; 
+    }
+    int c = 0 ; 
+    if(s.size()%2==1){
+        int k = s.size()/2 ;
+        //string ans = s ; 
+        while(k>=0){
+            if(k==0 && ans[k]=='1' && ans.size()>1){
+               // cout<<"hola\n"; 
+                ans = ans.substr(1,ans.size()-2); 
+                ans=ans+'9'; 
+                break; 
+            }
+            if(ans[k]-'0'!=0){
+                int temp = ans[k]-'0'; 
+                temp-= 1 ; 
+                ans[k] = (temp) +'0'; 
+                ans[s.size()-1-k] = (temp) +'0'; 
+                return ans; 
+            }
+            else{
+                ans[k] = (9) +'0'; 
+                ans[s.size()-1-k] = (9) +'0'; 
+                k--; 
+            }
+        }
+    }
+    else{
+        int k = s.size()/2 ;
+        while(k>=0){
+            if(k==0 && ans[k]=='1' && ans.size()>1){
+                ans = ans.substr(1,ans.size()-2); 
+                ans=ans+'9'; 
+                break; 
+            }
+            if(ans[k]-'0'!=0){
+                int temp = ans[k]-'0'; 
+                temp-= 1 ; 
+                ans[k] = (temp) +'0'; 
+                ans[s.size()-1-k] = (temp) +'0'; 
+                return ans ;
+            }
+            else{
+                ans[k] = (9) +'0'; 
+                ans[s.size()-1-k] = (9) +'0'; 
+                if(c==0){
+                    c++; 
+                    k-=2; 
+                }
+                else k--; 
+            }
+        }
+        
+    }
+    return ans ; 
+    
+}
