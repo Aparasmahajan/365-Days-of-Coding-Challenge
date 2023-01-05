@@ -1,0 +1,43 @@
+#include <bits/stdc++.h> 
+vector < vector < int > > numberPattern(int n) {
+
+  // Write your code here
+   /* int count=1;
+    
+    vector < vector < int > > ans;
+    for(int i=0;i<n;i++){
+        vector<int> yo;
+        for(int j=1;j<=pow(2,i);j++){
+            yo.push_back(count);
+            count++;
+        }
+        
+        ans.push_back(yo);
+     
+    }
+    return ans;*/
+    
+ vector<vector<int>>ans;
+    
+    int x=1;
+    for(int i=0;i<n;i++){
+        vector<int>v;
+        int m=pow(2,i);
+        for(int j=0;j<m;j++){
+          if(x>9)x=x%9;
+            v.push_back(x);
+            
+            x+=1;
+        }
+        ans.push_back(v);
+    }
+    
+    
+    return ans;
+    
+    
+}
+
+
+
+    
