@@ -1,0 +1,15 @@
+#include <bits/stdc++.h> 
+void printPatt(int n) {
+  // Write your code here.
+    for(int i=2;i<n+2;i++){
+        for(int j=n;j>i-2;j--){
+            if(i%2==0){
+                cout<<1;
+            }
+            else{
+                cout<<0;
+            }
+        }
+        cout<<endl;
+    }
+}
