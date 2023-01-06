@@ -1,0 +1,32 @@
+#include <bits/stdc++.h> 
+vector<vector<char>> interestingPattern(int n)
+{
+    // Write your code here
+    vector<char> user;
+    for (int i = 65; i <= 90; i++) {
+        user.push_back((char)i) ;
+    }
+    vector<vector<char>> ans;
+    char c=(char)(65+n);
+        for(int i=1;i<=n;i++)
+        {            
+            c=(char)(c-i);
+            vector<char> yo;
+            for(int j=0;j<i;j++)
+                    {
+                        yo.push_back(c);
+                        c++;
+                     }
+            ans.push_back(yo);
+        }
+    return ans;}
+//     for(int i=1;i<=n;i++){
+//         vector<char> yo;
+//         for(int j=1;j<=i;j++){
+//             int count=0;
+//             yo.push_back(user[]);
+//         }
+//         ans.push_back(yo);
+//     }
+//     return ans;
+// }
