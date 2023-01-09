@@ -1,0 +1,32 @@
+#include <bits/stdc++.h> 
+vector<vector<int>>printPattern(int n)
+{
+	// Wite your coder here.
+//     int count=1;
+//     vector<vector<int>> ans;
+//     for(int i=0;i<=n;i++){
+//         vector<int> yo;
+//         for(int j=n;j>=0;j++){
+//             yo.push_back(count++);
+// //             count++;
+//         }
+//         ans.push_back(yo);
+//     }
+//     return ans;
+int count=1;
+    vector<vector<int>> ans;
+    for(int i=0;i<n;i++)
+    {
+        vector<int> yo;
+        for(int j=n-i;j>0;j--){
+            yo.push_back(count++);
+        }
+        ans.push_back(yo);
+    }
+    for(int i=n-1;i>=0;i--){
+        for(int j=0;j<n-i;j++){
+        ans[i].push_back(count++);
+        }
+    }
+    return ans;
+}
