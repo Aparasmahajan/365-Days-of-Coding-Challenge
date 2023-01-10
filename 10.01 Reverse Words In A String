@@ -1,0 +1,24 @@
+void reverseS(string &str, int a,int b){
+    while(a<b){
+        swap(str[a],str[b]);
+        a++; b--;
+    }
+}
+string reverseString(string str)
+{
+    // Write your code here.
+//     str.insert(str.end(),' ');
+    int j=0;
+    for(int i=0;i<str.length();i++){
+        if(str[i]==' '){
+            reverseS(str,j,i-1);
+        j=i+1;
+        }
+    }
+//     str.pop_back();
+    reverseS(str,j,str.length()-1);
+    reverseS(str,0,str.length()-1);
+//     for(int i=0;i<str.length();i++){
+//         if(str[i]==' '&& str[++i]==' '){str.erase(i);}}
+    return str;
+}
