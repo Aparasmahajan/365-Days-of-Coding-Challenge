@@ -1,0 +1,119 @@
+#include <bits/stdc++.h> 
+string morseEncode(string x)
+{
+ 
+//     // refer to the Morse table
+//     // image attached in the article
+//     switch (x) {
+//         case ".-":
+//             return "a";
+//         case "-...":
+//             return "b";
+//         case "-.-.":
+//             return "c"; 
+//         case "-..":
+//             return "d";
+//         case ".":
+//             return "e";
+//         case "..-.":
+//             return "f";
+//         case "--.":
+//             return g;
+//         case "....":
+//             return h;
+//         case "..":
+//             return i;
+//         case ".---":
+//             return j;
+//         case "-.-":
+//             return k;
+//         case ".-..":
+//             return l;
+//         case "--":
+//             return m;
+//         case "-.":
+//             return n;
+//         case "---":
+//             return o;
+//         case  ".--.":
+//             return p;
+//         case "--.-":
+//             return q;
+//         case ".-.":
+//             return r;
+//         case "...":
+//             return s;
+//         case "-":
+//             return t;
+//         case "..-":
+//             return u;
+//         case "...-":
+//             return v;
+//         case ".--":
+//             return w;
+//         case "-..-":
+//             return x;
+//         case "-.--":
+//             return y;
+//         case "--..":
+//             return z;
+//         case ".----":
+//             return "1";
+//         case "..---":
+//             return "2";
+//         case  "...--":
+//             return "3";
+//         case "....-":
+//             return "4";
+//         case ".....":
+//             return "5";
+//         case "-....":
+//             return "6";
+//         case  "--...":
+//             return "7";
+//         case "---..":
+//             return "8";
+//         case "----.":
+//             return "9";
+//         case "-----":
+//             return "0";
+//     default:
+//         exit(0);
+//     }
+    
+    
+    
+    vector<string> help= { ".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--..", "-----", ".----", "..---", "...--", "....-", ".....", "-....", "--...", "---..", "----." };
+    string yo="";
+    int j;
+    for(int i=0;i<help.size();i++){
+        if(x==help[i]){
+             j=i;
+        }
+    }
+    if(j<26){
+        j=97+j;
+        yo+= (char)j;
+    }
+    else{
+        string str = to_string(j-26);
+        yo+=str;
+    }
+    return yo;
+}
+string morseToEnglish(string morsecode) 
+{
+    // Write your code here
+    morsecode += " ";
+    int j=0;
+    string ans="";
+    for(int i=0;i<morsecode.size();i++){
+        string help="";
+        if(morsecode[i]==' '){
+            help=morsecode.substr(j,i-j);
+            j=i+1;
+            ans+=morseEncode(help);
+        }
+    }
+    return ans;
+}
