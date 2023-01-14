@@ -1,0 +1,72 @@
+// bool subseq(string &first, string &second,int m,int n){
+//     if(m==0)    {return 1;}
+//     if(n==0)    {return 0;}
+//     if (first[m - 1] == second[n - 1])
+//         return subseq(first, second, m - 1, n - 1);
+//     return subseq(first, second, m, n - 1);
+    
+// }
+
+// bool subseq(string a,string b,int i,int j){
+//     int count=0;
+//     int q;
+//     for(int x=0;x<i;x++){
+//         for(int y=0;y<j;y++){
+//             if(a[x]==b[y]&&y!= q){
+//                 count++;
+//                 q=y;
+//                 break;
+//             }
+//         }
+//     }
+//     if(count==i){
+//         return 1;
+//     }
+//     return 0;
+// }
+
+string amazingStrings(string first, string second,string third) {
+//     // Write your code here.
+//     int m=first.length();
+//     int n=third.length();
+//     int s1=subseq(first,third,m,n);   
+//     m=second.length();
+//     int s2=subseq(second,third,m,n);
+//     string a="YES";
+//     string b="NO";
+
+//     if(s1==1&&s2==1){
+//         return a;
+//     }
+//     else{return b;}
+    
+    
+    int temp[26]={0};
+    for(int i=0;i<first.size();i++)
+    {
+        temp[first[i]-65]++;
+    }
+    
+    for(int i=0;i<second.size();i++)
+    {
+        temp[second[i]-65]++;
+    }
+    
+    for(int i=0;i<third.size();i++)
+    {
+        if(temp[third[i]-65]>=1)
+        {
+            temp[third[i]-65]--;
+        }
+        else return "NO" ;;
+    }
+    
+    for(int i=0;i<26;i++)
+    {
+        if(temp[i]>=1)
+            return "NO"   ;
+    }
+    return "YES";
+    
+
+}
