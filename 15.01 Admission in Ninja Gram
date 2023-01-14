@@ -1,0 +1,55 @@
+// #include <bits/stdc++.h> 
+// bool ninjaGram(string &str)
+// {
+//     if(str.length()>26){
+//         return "YES";
+        
+//     }
+    
+//         return "NO";
+    
+//     int x;
+//     vector<bool> yo(26,0);
+//     int n=str.size();
+//     for(int i=0;i<n;i++){
+//         if(str[i]>='A'&&str[i]<='Z'){
+//             x=str[i]-'A';
+//         }
+//         else if(str[i]>+'a'&&str[i]<='z'){
+//             x=str[i]-'a';
+//         }
+//         else{
+//             continue;
+//         }
+//         yo[x]=true;
+//     }
+//     for(int i=0;i<26;i++){
+//     if(yo[i]!=true){
+//         return false;
+//     }
+// }
+//         return true;
+// }
+
+
+bool ninjaGram(string & str) {
+  int n = str.size();
+  vector < bool > yo(26, false);
+  int index;
+  for (int i = 0; i < n; i++) {
+    if (str[i] >= 'A' && str[i] <= 'Z') {
+      index = str[i] - 'A';
+    }
+    else {
+        index = str[i] - 'a';
+    }
+
+    yo[index] = true;
+  }
+  for (int i = 0; i < 26; i++) {
+    if (yo[i] != true) {
+      return false;
+    }
+  }
+  return true;
+}
