@@ -1,0 +1,17 @@
+#include <bits/stdc++.h> 
+int getLengthofLongestSubstring(string &s, int k) {
+    // Write your code here.
+    int n = s.length();
+    int ans = 0;
+    for (int i = 0; i < n; i++) {
+        unordered_set<char> distinct;
+        for (int j = i ; j < n; j++) {
+            distinct.insert(s[j]);
+            if (distinct.size() > k) {
+                break;
+            }
+                ans = max(ans, j - i+1);
+        }
+    }
+   return ans;
+}
