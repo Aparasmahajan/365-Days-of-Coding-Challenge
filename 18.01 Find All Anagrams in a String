@@ -1,0 +1,30 @@
+vector<int> findAnagramsIndices(string str, string ptr, int n, int m){
+    vector<int> anagramIndices;
+    vector<int> ptrMap(26, 0);
+
+    for (int i = 0; i < m; i++) {
+        ptrMap[ptr[i] - 'A']++;
+    }
+
+    for (int i = 0; i < n - m + 1; i++) {
+        vector<int> subStrMap(26, 0);
+
+        for (int j = i; j < i + m; j++) {
+            subStrMap[str[j] - 'A']++;
+        }
+    
+        bool ok = true;
+        for (int j = 0; j < 26; j++){
+            if (subStrMap[j] != ptrMap[j]) {
+                ok = false;
+                break;
+            }
+        }
+
+        if (ok){
+            anagramIndices.push_back(i);
+        }
+    }
+
+    return anagramIndices;
+}
