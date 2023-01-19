@@ -1,0 +1,11 @@
+#include <bits/stdc++.h> 
+long long titleToNumber(string str) {
+    // Write your code here
+    long long result = 0;
+        for(char c : str)
+        {
+            long long d = c - 'A' + 1;
+            result = result * 26 + d;
+        }
+        return result;
+}
