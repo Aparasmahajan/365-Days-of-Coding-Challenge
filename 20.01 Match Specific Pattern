@@ -1,0 +1,48 @@
+#include <bits/stdc++.h> 
+#include <unordered_map>
+string generateHash(string &str)
+{    
+    unordered_map<char, int> mp;
+    
+    string hash;
+
+    int counter = 1;
+
+    for (int i = 0; i < str.length(); ++i)
+    {
+        char ch = str[i];
+
+        if (mp.find(ch) == mp.end())
+        {
+            mp[ch] = counter++;
+        }
+
+        hash = hash + to_string(mp[ch]);
+    }
+    
+    return hash;
+}
+
+vector<string> matchSpecificPattern(vector<string> words, int n, string pattern)
+{
+    vector<string> ans;
+    
+    string hashPattern = generateHash(pattern);
+
+    for (int i = 0; i < n; i++)
+    {
+        string word = words[i];
+
+        if (word.length() == pattern.length())
+        {
+            string hashWord = generateHash(word);
+
+            if (hashWord == hashPattern)
+            {
+                ans.push_back(word);
+            }
+        }
+    }
+    
+    return ans;
+}
