@@ -1,0 +1,51 @@
+int *getCharCountArray(string str)
+{
+
+    int *count = new int[256];
+    for(int i = 0; i < 256; i++){
+        count[i] = 0;
+    }
+
+    for (int i = 0; i < str.length(); i++)
+    {
+        count[str[i]]++;
+    }
+
+    return count;
+}
+
+int firstNonRepeatingHelper(string str)
+{
+    
+    int *count = getCharCountArray(str);
+    
+    int index = -1;
+
+    for (int i = 0; i < str.length(); i++)
+    {
+        if (count[str[i]] == 1)
+        {
+            index = i;
+            break;
+        }
+    }
+
+    return index;
+}
+
+char findNonRepeating(string stream)
+{
+    char arr;
+
+    for (int i = 0; i < stream.length(); i++)
+    {
+        int index = firstNonRepeatingHelper(stream.substr(0, i+1));
+
+        if (index != -1)
+        {
+            arr=stream[index];
+        }
+    }
+
+    return arr;
+}
