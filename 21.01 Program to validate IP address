@@ -1,0 +1,59 @@
+#include <bits/stdc++.h> 
+bool isValidChunk(string chunk) {
+//Special
+    if (chunk == "00" or chunk == "000") {
+        return false;
+    }
+    if (chunk.size() == 0 || chunk.size() > 3) {
+        return false;
+    }
+
+    int currentNumber = 0;
+    for (auto x : chunk) {
+        if (!isdigit(x)) {
+            return false;
+        }
+        currentNumber = currentNumber * 10 + (x - '0');
+    }
+
+    return (currentNumber >= 0 && currentNumber <= 255);
+}
+
+int helperMethod(string ipAddress, int count, int index) {
+    string firstChunk = "";
+    int i = index;
+    for (; i < ipAddress.size(); i++) {
+        if (ipAddress[i] == '.') {
+            break;
+        }
+        firstChunk += ipAddress[i];
+    }
+    // chunk is valid or not
+    // if firstchunk between '0' to '255'
+    bool valid = isValidChunk(firstChunk);
+
+    if (valid == false) {
+        return -1;
+    }
+
+    int otherChunks = 0;
+    if (i < ipAddress.size() - 1) {
+        // total no of chunks in remaining str
+        otherChunks = helperMethod(ipAddress, count + 1, i + 1);
+    }
+
+    // otherChunks is valid
+    if (otherChunks != -1) {
+        return otherChunks + 1;
+    } else {
+        return -1;
+    }
+}
+
+bool isValidIPv4(string ipAddress) {
+    if (helperMethod(ipAddress, 0, 0) == 4) {
+        return true;
+    }
+
+    return false;
+}
