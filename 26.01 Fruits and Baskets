@@ -14,3 +14,30 @@ int findMaxFruits(string &str, int n) {
 
     return maxFruits;
 }
+
+
+
+//Sliding Window
+#include <bits/stdc++.h> 
+int findMaxFruits(string &str, int n) {
+    int start = 0, end = 0;
+    int maxFruits = 0;
+   unordered_map<char, int> characters;
+
+    while(end < n) {
+        if(characters.count(str[end]) or characters.size() < 2) {
+            characters[str[end]]++;
+            end++;
+            maxFruits = max(maxFruits, end - start);
+        }
+        else {
+            characters[str[start]]--;
+            if(characters[str[start]] == 0) {
+                characters.erase(str[start]);
+            }
+            start++;
+        }
+    }
+
+    return maxFruits;
+}
