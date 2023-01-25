@@ -1,0 +1,16 @@
+#include <bits/stdc++.h> 
+int findMaxFruits(string &str, int n) {
+    int maxFruits = 0;
+    for (int i = 0; i < n; i++) {
+        unordered_set<char> distinctChar;
+        for (int j = i; j < n; j++) {
+            distinctChar.insert(str[j]);
+            if (distinctChar.size() > 2) {
+                break;
+            }
+            maxFruits = max(maxFruits, j - i + 1);
+        }
+    }
+
+    return maxFruits;
+}
