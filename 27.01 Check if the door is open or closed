@@ -1,0 +1,20 @@
+#include <bits/stdc++.h>
+string doorStatus(int n) {
+    bool status[n + 1] = {0};
+    for (int id = 1; id <= n; ++id) {
+        for (int j = id; j <= n; j += id) {
+            status[j] = !status[j];
+        }
+    }
+
+    string yo;
+    for (int i = 1; i <= n; ++i) {
+        if (status[i]) {
+            yo.append("1");
+        } else {
+            yo.append("0");
+        }
+    }
+
+    return yo;
+}
