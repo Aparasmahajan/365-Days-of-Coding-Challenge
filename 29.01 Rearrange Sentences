@@ -1,0 +1,109 @@
+#include <bits/stdc++.h> 
+
+bool isLetterSentence(string &s)
+{
+    int index = 0;
+    
+    while (s[index] != ' ')
+    {
+        index++;
+    }
+    
+    index++;
+    if (s[index] >= '0' and s[index] <= '9')
+    {
+        return false;
+    }
+    else
+    {
+        return true;
+    }
+}
+
+bool comparator(string &pair1, string &pair2)
+{
+    int indexOfA = 0;
+    int indexOfB = 0;
+    string id1 = "";
+    string id2 = "";
+    
+    while (pair1[indexOfA] != ' ')
+    {
+        id1.push_back(pair1[indexOfA]);
+        indexOfA++;
+    }
+    
+    while (pair2[indexOfB] != ' ')
+    {
+        id2.push_back(pair2[indexOfB]);
+        indexOfB++;
+    }
+    
+    int sizeOfA = pair1.size();
+    int sizeOfB = pair2.size();
+    string lettersOfA = "", lettersOfB = "";
+    
+    while (indexOfA < sizeOfA)
+    {
+        lettersOfA.push_back(pair1[indexOfA]);
+        indexOfA++;
+    }
+    
+    while (indexOfB < sizeOfB)
+    {
+        lettersOfB.push_back(pair2[indexOfB]);
+        indexOfB++;
+    }
+
+    if (lettersOfA != lettersOfB)
+    {
+        if (lettersOfA < lettersOfB)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    if (id1 < id2)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+vector<string> reOrderSentences(vector<string> sentences)
+{
+    vector<string> answer; 
+    vector<string> numberSentences; 
+    vector<string> letterSentences;
+    for (auto i : sentences)
+    {
+        if (isLetterSentence(i))
+        {
+            letterSentences.push_back(i);
+        }
+        else
+        {
+            numberSentences.push_back(i);
+        }
+    }
+    
+    sort(letterSentences.begin(), letterSentences.end(), comparator);
+
+    for (auto j : letterSentences)
+    {
+        answer.push_back(j);
+    }
+
+    for (auto j : numberSentences)
+    {
+        answer.push_back(j);
+    }
+    return answer;
+}
