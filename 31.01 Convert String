@@ -1,0 +1,22 @@
+#include <bits/stdc++.h> 
+string convertString(string str) 
+{
+	// WRITE YOUR CODE HERE
+	bool flag = true;
+    for (int i = 0; i < str.size(); i++)
+    {
+            if (flag == true && islower(str[i])) {
+                str[i] = toupper(str[i]);
+            }
+            if (str[i] ==' ')
+            {
+                flag = true;
+            }
+            else
+            {
+                flag = false;
+            }
+        }
+
+        return str;
+}
