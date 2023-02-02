@@ -1,0 +1,42 @@
+vector<string> initials = {"", "one ", "two ", "three ", "four ", "five ", "six ", "seven ", "eight ", "nine ",
+                           "ten ", "eleven ", "twelve ", "thirteen ", "fourteen ", "fifteen ", "sixteen ", "seventeen ", "eighteen ",
+                           "nineteen "};
+
+vector<string> seconds = {"", "", "twenty ", "thirty ", "forty ", "fifty ", "sixty ", "seventy ", "eighty ",
+                          "ninety "};
+
+string convertDigitsUtil(int n, string s)
+{
+    string str = "";
+    if (n > 19)
+    {
+        str += seconds[n / 10] + initials[n % 10];
+    }
+    else
+    {
+        str += initials[n];
+    }
+
+    if (n != 0)
+    {
+        str += s;
+    }
+
+    return str;
+}
+
+string handleAll(long n){
+    string s;
+    s += convertDigitsUtil((int)(n / 10000000), "crore ");
+    s += convertDigitsUtil((int)((n / 100000) % 100), "lakh ");
+    s += convertDigitsUtil((int)((n / 1000) % 100), "thousand ");
+    s += convertDigitsUtil((int)((n / 100) % 10), "hundred ");
+
+    if ((n > 100) && (n % 100 != 0))
+    {
+        s += "and ";
+    }
+
+    s += convertDigitsUtil((int)(n % 100), "");
+    return s;
+}
