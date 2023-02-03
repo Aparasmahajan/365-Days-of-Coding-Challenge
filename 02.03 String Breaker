@@ -1,0 +1,48 @@
+
+int helper(string & s, int start, int end, unordered_set<string> & dictionary, vector<vector<int>> & dp) 
+{
+    if (dp[start][end] != -1) 
+    {
+        return dp[start][end];
+    }
+
+
+    if (dictionary.count(s.substr(start, end - start + 1)) == 1) 
+    {
+        return 0;
+    }
+
+    if (start == end) 
+    {
+        return 1e9;
+    }
+
+    int minBreaks = 1e9;
+    for (int i = start; i < end; i++) 
+    {
+        minBreaks = min(minBreaks, 1 + helper(s, start, i, dictionary, dp) + helper(s, i + 1, end, dictionary, dp));
+    }
+
+    dp[start][end] = minBreaks;
+
+    return minBreaks;
+}
+
+int stringBreaker(string s, int n, vector<string> dictionary) 
+{
+    vector<vector<int>> dp(s.size(), vector<int>(s.size(), -1));
+    unordered_set < string > dict;
+
+    for (int i = 0; i < n; i++) 
+    {
+        dict.insert(dictionary[i]);
+    }
+
+    int minBreaks = helper(s, 0, s.size() - 1, dict, dp);
+
+    if (minBreaks >= 1e9)
+    {
+        minBreaks = -1;
+    }
+    return minBreaks;
+}
