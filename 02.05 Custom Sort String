@@ -1,0 +1,25 @@
+string specificOrder(string & x, string & y) {
+    if (y.length() == 0) {
+        return x;
+    }
+
+    string ans = "";
+    unordered_set < char > visited;
+
+    for (int i = 0; i < y.length(); i++) {
+        for (int j = 0; j < x.length(); j++) {
+            if (y[i] == x[j]) {
+                ans.push_back(y[i]);
+            }
+        }
+        visited.insert(y[i]);
+    }
+
+    for (int i = 0; i < x.length(); i++) {
+        if (visited.find(x[i]) == visited.end()) {
+            ans.push_back(x[i]);
+        }
+    }
+
+    return ans;
+}
