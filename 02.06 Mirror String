@@ -1,0 +1,21 @@
+#include <bits/stdc++.h> 
+
+bool isReflectionEqual(string &s)
+{
+    unordered_set<char> symmetric = {'A', 'H', 'I', 'M', 'O', 'T', 'U', 'V', 'W', 'X', 'Y'};
+    int len = s.length();
+
+    for (int i = 0; i < len; i++)
+    {
+        if (symmetric.find(s[i]) == symmetric.end())
+            return false;
+    }
+
+    string rev = s;
+    reverse(rev.begin(), rev.end());
+
+    if (s == rev)
+        return true;
+    else
+        return false;
+}
